@@ -1,9 +1,9 @@
-
+import * as S from './styles'
 
 export default function Home() {
   return (
-    <main >
+    <S.Wrapper >
       <h1>Deu certo</h1>
-    </main>
+    </S.Wrapper>
   );
 }

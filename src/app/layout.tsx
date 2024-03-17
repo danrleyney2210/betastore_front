@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { roboto } from '@/app/fonts'
+'use client';
 
-export const metadata: Metadata = {
-  title: "Beta Store",
-  description: "Creat Store page",
-};
+import StyledJsxRegistry from './lib/registry'
+import { roboto } from '@/app/fonts'
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './styles/GlobalStyles';
+import { theme } from './styles/theme';
 
 export default function RootLayout({
   children,
@@ -13,7 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <StyledJsxRegistry>
+          <GlobalStyles />
+          <ThemeProvider theme={theme}>
+            {children}
+          </ThemeProvider>
+        </StyledJsxRegistry>
+      </body>
     </html>
   );
 }
