@@ -1,15 +1,61 @@
 'use client'
-import { Button } from '@/components';
+import { Button, Load } from '@/components';
 import * as S from './styles'
 import { InputSearch } from '@/components/FormComponents/inputSearch/InputSearch';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdFilterList } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
+import ReactPaginate from 'react-paginate';
+import { IProducts } from '@/models/Products';
+import { api } from '@/service/api';
+import { redirect, useRouter } from 'next/navigation'
+
 
 
 export default function Home() {
   const [isActiveDrop, setIsActiviDrop] = useState(false)
+  const [isLoading, setIsloading] = useState(true)
+
+  const [data, setData] = useState<IProducts[]>([] as IProducts[])
+  const [dataTemp, setDataTemp] = useState<IProducts[]>()
+
+  const [currentItems, setCurrentItems] = useState<any>(null)
+  const [pageCount, setPageCount] = useState<number | any>(0)
+  const [itemOffset, setItemOffset] = useState(0)
+  const [itemsPerPage, setItemsPerPage] = useState(5)
+
+  const router = useRouter()
+
+  function handleClick(id: string) {
+    router.push(`/product/${id}`)
+  }
+
+  const getTicket = async () => {
+    setIsloading(true)
+    const result = await api.get<IProducts[]>('').then(({ data }) => {
+      setIsloading(false)
+      setData(data)
+      setDataTemp(data)
+    })
+
+    return result
+  }
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage
+    setCurrentItems(data?.slice(itemOffset, endOffset))
+    setPageCount(Math.ceil(data?.length / itemsPerPage))
+  }, [itemOffset, itemsPerPage, data])
+
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * itemsPerPage) % data.length
+    setItemOffset(newOffset)
+  }
+
+  useEffect(() => {
+    getTicket()
+  }, [])
 
   return (
     <S.Wrapper >
@@ -20,7 +66,7 @@ export default function Home() {
           <S.WrapperFilterButton>
             <button type='button' onClick={() => setIsActiviDrop(!isActiveDrop)}>
               <MdFilterList />
-              filter
+              Filtrar
             </button>
 
             {isActiveDrop &&
@@ -39,122 +85,92 @@ export default function Home() {
         </div>
 
         <div className="content-body-itens">
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
 
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
+          {
+            currentItems &&
+            currentItems.map((item: IProducts, index: number) => {
+              return (
+                <S.Item key={index}>
+                  <div className="card-header">
+                    <img src="" alt="" />
+                    <MdFavorite className='icon-favorite' />
+                  </div>
+                  <div className="card-description">
 
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
+                    <h3>Titulo do item aqui</h3>
+                    <p>{item.description}</p>
+                    <span>Status</span>
+                  </div>
+                  <div className="price">
+                    <h3>R$ {item.price}</h3>
+                    <Button onClick={() => handleClick(item.id)}>
+                      Saiba mais
+                      <BiCommentDetail />
+                    </Button>
+                  </div>
+                </S.Item>
+              )
+            })
+          }
 
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
-
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
-
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
-
-          <S.Item>
-            <div className="card-header">
-              <img src="" alt="" />
-              <MdFavorite className='icon-favorite' />
-            </div>
-            <div className="card-description">
-              <h3>Titulo do item aqui</h3>
-              <p>Pequena descricao do item aqui ou qualquer informacoa da API</p>
-              <span>Status</span>
-            </div>
-            <div className="price">
-              <h3>R$ #75,00</h3>
-              <Button>
-                Saiba mais
-                <BiCommentDetail />
-              </Button>
-            </div>
-          </S.Item>
+          {isLoading && <div className="content-load">
+            <Load />
+          </div>}
         </div>
+
+        <S.WrapperPagination>
+          <div className="content_pagination">
+            {/* <Pagination defaultCurrent={6} total={50} /> */}
+            <div className="page-info">
+              {data && (
+                <span className="result">{data.length} Resultados</span>
+              )}
+
+              <div className="contentSelect">
+                <p>Página: </p>
+                <select
+                  name=""
+                  id=""
+                  value={itemsPerPage}
+                  onChange={(e) =>
+                    setItemsPerPage(Number(e.target.value))
+                  }
+                >
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">25</option>
+                </select>
+              </div>
+            </div>
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={pageCount}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              containerClassName="pagination"
+              pageLinkClassName="page-num"
+              previousLinkClassName="page-num"
+              nextLinkClassName="page-num"
+              activeClassName="active"
+            />
+          </div>
+        </S.WrapperPagination>
+
       </div>
+      <S.Footer>
+        <div>
+          <p>
+            Copyright 2024 | Betacurso Tech. All Rights Reserved.
+          </p>
+
+          <span>
+            Engineering made by Danrley | www.danrley.dev
+          </span>
+        </div>
+      </S.Footer>
     </S.Wrapper>
   );
 }

@@ -12,6 +12,7 @@ export const WrapperButton = styled.button`
   font-size: 14px;
   border: none;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 6px;
 
