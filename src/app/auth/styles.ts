@@ -24,6 +24,8 @@ export const Wrapper = styled.div`
       background-color: #62A219;
       border-radius: 8px 0 0 8px;
       display: flex;
+      flex-direction: column;
+      gap: 10px;
       justify-content: center;
       align-items: center;
 

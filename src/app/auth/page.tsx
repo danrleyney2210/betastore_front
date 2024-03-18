@@ -10,6 +10,7 @@ import { ILoginSchema } from './types'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/Auth'
+import { BsFillCartCheckFill } from "react-icons/bs";
 
 
 export default function Auth() {
@@ -41,6 +42,7 @@ export default function Auth() {
       <div className="content">
 
         <div className="box-left">
+          <BsFillCartCheckFill size={39} color='#fff' />
           <h1>Beta<span>Store</span></h1>
         </div>
 

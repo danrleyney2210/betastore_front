@@ -80,6 +80,7 @@ export const Item = styled.div`
 
     p {
       font-size: 14px;
+      height: 50px;
       color: #333;
       margin-bottom: 8px;
       display: -webkit-box;
@@ -182,6 +183,10 @@ export const Header = styled.div`
   height: 45px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 1050px) {
+    padding: 0 24px;
+  }
   
 
   > div {
@@ -209,15 +214,15 @@ export const Header = styled.div`
       div {
         display: flex;
         align-items: center;
+        gap: 6px;
+        color: #999;
+        
+
         span {
           color: #999;
           font-size: 14px; 
         }
 
-      }
-
-      div:nth-child(2){
-        gap: 6px;
         &:hover {
             color: #62A219;
 
@@ -226,7 +231,10 @@ export const Header = styled.div`
             }
           }  
         }
-    }
+
+      }
+
+      
     
   }
 

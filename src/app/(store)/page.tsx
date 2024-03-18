@@ -7,9 +7,10 @@ import { MdFilterList } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 import ReactPaginate from 'react-paginate';
-import { IProducts } from '@/models/Products';
+import { IDataProduct, IProducts } from '@/models/Products';
 import { api } from '@/service/api';
 import { redirect, useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 
 
@@ -27,16 +28,16 @@ export default function Home() {
 
   const router = useRouter()
 
-  function handleClick(id: string) {
+  function handleClick(id: number) {
     router.push(`/product/${id}`)
   }
 
-  const getTicket = async () => {
+  const getProducts = async () => {
     setIsloading(true)
-    const result = await api.get<IProducts[]>('').then(({ data }) => {
+    const result = await api.get<IDataProduct<IProducts>>('/products').then(({ data }) => {
       setIsloading(false)
-      setData(data)
-      setDataTemp(data)
+      setData(data.products)
+      setDataTemp(data.products)
     })
 
     return result
@@ -54,7 +55,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getTicket()
+    getProducts()
   }, [])
 
   return (
@@ -92,14 +93,14 @@ export default function Home() {
               return (
                 <S.Item key={index}>
                   <div className="card-header">
-                    <img src="" alt="" />
+                    <Image src={item.images[0]} alt="" width={40} height={40} />
                     <MdFavorite className='icon-favorite' />
                   </div>
                   <div className="card-description">
 
-                    <h3>Titulo do item aqui</h3>
+                    <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                    <span>Status</span>
+                    <span>Categoria: {item.category}</span>
                   </div>
                   <div className="price">
                     <h3>R$ {item.price}</h3>

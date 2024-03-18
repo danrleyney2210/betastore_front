@@ -1,10 +1,18 @@
 export interface IProducts {
-  createdAt: string
-  name: string
+  id: number
+  title: string
   description: string
-  price: string
-  location: string
-  departament: string
-  images: string
-  id: string
+  price: number
+  discountPercentage: number
+  rating: number
+  stock: number
+  brand: string
+  category: string
+  thumbnail: string
+  images: Array<string>
+}
+
+
+export interface IDataProduct<T> {
+  products: Array<T>
 }

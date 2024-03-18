@@ -9,12 +9,6 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '@/contexts/Auth';
 
 
-
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,8 +33,6 @@ export default function RootLayout({
             </ThemeProvider>
           </StyledJsxRegistry>
         </AuthProvider>
-
-        {/* <ToastContainer position='top-center' /> */}
       </body>
     </html>
   );
