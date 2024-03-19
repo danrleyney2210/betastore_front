@@ -24,7 +24,7 @@
 
 ## 🔖 Layout
 
-- O Layout foi desenvolvido por mim, sem nenhum figma ou ponto de referêncua
+- O Layout foi desenvolvido por mim, sem nenhum figma ou ponto de referência
 
 ## Login Auth
 
