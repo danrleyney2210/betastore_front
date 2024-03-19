@@ -53,8 +53,10 @@ export const Item = styled.div`
     justify-content: space-between;
     
     img {
-      height: 40px;
-      width: 40px;
+      /* height: 40px;
+      width: 40px; */
+
+      border-radius: 10px;
 
     }
 

@@ -31,7 +31,6 @@ export const Wrapper = styled.div`
     .item {
       /* max-width: 900px; */
       width: 100%;
-      height: 400px;
       background-color: #fff;
       border-radius: 8px;
       padding: 16px;
@@ -42,14 +41,22 @@ export const Wrapper = styled.div`
       .content-images {
         height: 100%;
         width: 80px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-template: 15px;
         
         .item-image {
-          background-color: #ccc;
+          
           height: 100%;
           width: 100%;
+          transition: transform 0.3s ease;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.1);
+           
+          }
         }
       }
 
@@ -57,7 +64,7 @@ export const Wrapper = styled.div`
         max-width: 350px;
         width: 100%;
         height: 100%;
-        background-color: #ccc;
+        border-radius: 10px;
       }
 
       .description {

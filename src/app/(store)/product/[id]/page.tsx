@@ -1,12 +1,13 @@
-
+'use client'
 
 import { Button } from '@/components'
 import * as S from './styles'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { api } from '@/service/api'
 import { IProducts } from '@/models/Products'
 import Image from 'next/image'
 import { IoIosArrowBack } from "react-icons/io";
+import { useEffect, useState } from 'react'
 
 
 
@@ -16,38 +17,71 @@ interface ProsductsProps {
   }
 }
 
-async function getProduct(id: string) {
-  const response = await api.get(`/products/${id}`)
-  const products = await response.data
-  return products;
-}
 
-export default async function ProductDinamicPage({ params }: ProsductsProps) {
-  const product: IProducts = await getProduct(params.id);
 
+export default function ProductDinamicPage({ params }: ProsductsProps) {
+  const [product, setProduct] = useState<IProducts>({} as IProducts)
+  const [currentImage, setCurrentImage] = useState<string>('')
+  const router = useRouter()
+
+
+  async function getProduct(id: string) {
+    const response = await api.get(`/products/${id}`)
+    setProduct(response.data)
+    setCurrentImage(response.data.images[0])
+  }
+
+  function changeImage(image: string) {
+    setCurrentImage(image)
+  }
+
+
+  useEffect(() => {
+    getProduct(params.id)
+  }, [params.id])
 
 
   return (
     <S.Wrapper>
       <div className="content">
-        <div className='go-back'>
+        <div className='go-back' onClick={() => router.push('/')}>
           <IoIosArrowBack />
           <span>Voltar</span>
         </div>
         <div className="item">
           <div className="content-images">
-            <div className="item-image"></div>
-            <div className="item-image"></div>
-            <div className="item-image"></div>
-            <div className="item-image"></div>
+
+
+            {
+              product && product.images?.map((item, index) => {
+                return (
+                  <div className="item-image">
+                    <Image
+                      key={index}
+
+                      src={item}
+                      width={80}
+                      height={60}
+                      quality={100}
+                      alt=''
+                      onClick={() => changeImage(item)}
+                    // layout="responsive"
+                    />
+                  </div>
+                )
+              })
+            }
+
+
           </div>
-          <div className="main-image" style={{ maxWidth: '350px' }}>
+          <div className="main-image" style={{ maxWidth: '450px' }}>
             <Image
-              src={product.images[0]}
+              src={currentImage}
               width={350}
-              height={368}
+              height={468}
               quality={100}
               alt=''
+              layout="responsive"
             />
           </div>
           <div className="description">

@@ -93,8 +93,14 @@ export default function Home() {
               return (
                 <S.Item key={index}>
                   <div className="card-header">
-                    <Image src={item.images[0]} alt="" width={40} height={40} />
-                    <MdFavorite className='icon-favorite' />
+                    <Image
+                      src={item.thumbnail}
+                      alt=""
+                      width={200}
+                      height={130}
+
+                    />
+
                   </div>
                   <div className="card-description">
 
