@@ -16,7 +16,7 @@ export const useLocalStorage = ({ storageKey, initialValue }: IUseLocalStoragePr
   });
 
   const setValue = useCallback(
-    (value: string) => {
+    (value: any) => {
       try {
         setState(value);
         localStorage.setItem(storageKey, JSON.stringify(value));

@@ -1,5 +1,5 @@
 'use client'
-import { Button, Load } from '@/components';
+import { Button, Load, Modal } from '@/components';
 import * as S from './styles'
 import { InputSearch } from '@/components/FormComponents/inputSearch/InputSearch';
 import React, { useEffect, useState } from 'react';
@@ -12,12 +12,19 @@ import { api } from '@/service/api';
 import { redirect, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { IoAdd } from "react-icons/io5";
+import { InputRHF } from '@/components/RHFComponents';
+import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-
+interface IaddProduct {
+  nameProduct: string
+}
 
 export default function Home() {
   const [isActiveDrop, setIsActiviDrop] = useState(false)
   const [isLoading, setIsloading] = useState(true)
+  const [showModalProduct, setShowModalProduct] = useState(false)
 
   const [data, setData] = useState<IProducts[]>([] as IProducts[])
   const [dataTemp, setDataTemp] = useState<IProducts[]>([] as IProducts[])
@@ -39,6 +46,32 @@ export default function Home() {
   function handleClick(id: number) {
     router.push(`/product/${id}`)
   }
+
+  const methods = useForm<IaddProduct>();
+
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
+
+  const onSubmit = async (data: any) => {
+    console.log(data)
+
+    const result = await api.post('products/add', {
+      title: data
+    })
+
+    if (result) {
+      toast.success('Produto Casdastro com Sucesso!')
+      setShowModalProduct(false)
+    } else {
+      toast.error('Algor errado aconteceu tente novamente!')
+    }
+    //Revalidate and get All Product
+  };
+
 
   const filter = (search: string) => {
     if (!search) {
@@ -98,6 +131,7 @@ export default function Home() {
               Filtrar
             </button>
 
+
             {isActiveDrop &&
               <React.Fragment>
                 <div className="dropdown-filter">
@@ -111,6 +145,10 @@ export default function Home() {
               </React.Fragment>
             }
           </S.WrapperFilterButton>
+
+          <S.ButtonAddProduct onClick={() => setShowModalProduct(true)}>
+            <IoAdd />
+          </S.ButtonAddProduct>
         </div>
 
         <div className="content-body-itens">
@@ -201,6 +239,30 @@ export default function Home() {
         </S.WrapperPagination>
 
       </div>
+
+      <Modal
+        title='Adicionar Produto'
+        showModal={showModalProduct}
+        onClose={() => setShowModalProduct(false)}
+      >
+        <FormProvider {...methods}>
+          <S.ContentModalProduct>
+            <InputRHF
+              name='nameProduct'
+              placeholder='Digite o nome do Produto'
+              type='text'
+              rules={{ required: 'Campo Obrigatório' }}
+            />
+            <p className='text-error'>{errors.nameProduct?.message}</p>
+
+            <Button
+              onClick={() => handleSubmit(onSubmit)()}>
+              Adicionar produtdo
+            </Button>
+          </S.ContentModalProduct>
+        </FormProvider>
+
+      </Modal>
       <S.Footer>
         <div>
           <p>

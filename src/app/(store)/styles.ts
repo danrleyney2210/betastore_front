@@ -127,6 +127,12 @@ export const Item = styled.div`
 
 export const WrapperFilterButton = styled.div`
   position: relative;
+
+  .content-button {
+    display: flex;
+    align-content: center;
+    gap: 16px;
+  }
   
   button {
     z-index: 2;
@@ -190,6 +196,45 @@ export const WrapperFilterButton = styled.div`
     right: 0;
     bottom: 0;
   }
+`
+
+export const ButtonAddProduct = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:6px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #62A219;
+    border: 1px solid transparent;
+
+    &:focus {
+      background-color: #444;
+      color: #A5DA34;
+    }
+
+    gap: 6px;
+
+    &:hover {
+     border: 1px solid #62A219;
+      color: #A5DA34;
+    }
+`
+
+export const ContentModalProduct = styled.div`
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .text-error {
+      color: red;
+      font-size: 12px;
+    }
 `
 
 

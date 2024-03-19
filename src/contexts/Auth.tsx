@@ -26,6 +26,8 @@ interface IContentxtProvider {
   AuthLogin: (data: ILoginSchema) => void
   dataUser: TResponseLogin
   GoOut: () => void
+  totalItem: number
+  settotalItem: any
 }
 
 export const AuthContext = createContext({} as IContentxtProvider)
@@ -34,7 +36,7 @@ export const AuthContext = createContext({} as IContentxtProvider)
 export const AuthProvider = ({ children }: IAuth) => {
   const [betastore, setBetaSotre] = useLocalStorage({ storageKey: '@betastore-token' })
   const [dataUser, setDataUser] = useLocalStorage({ storageKey: '@betastore-data' })
-
+  const [totalItem, settotalItem] = useState(0)
   const router = useRouter()
 
   const AuthLogin = async (data: ILoginSchema) => {
@@ -68,7 +70,9 @@ export const AuthProvider = ({ children }: IAuth) => {
       value={{
         AuthLogin,
         dataUser,
-        GoOut
+        GoOut,
+        totalItem,
+        settotalItem
       }}
     >
       {children}

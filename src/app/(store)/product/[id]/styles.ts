@@ -87,6 +87,31 @@ export const Wrapper = styled.div`
           
         }
 
+
+        .content-quantity {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin: 15px 0px;
+
+
+          button{
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+
+            &:hover {
+              background-color: #579B0B;
+              color: #fff;
+            }
+          }
+        }
        
 
         .price {

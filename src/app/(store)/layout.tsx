@@ -8,18 +8,21 @@ import { BsCart2 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa6";
 import { useAuth } from '@/contexts/Auth';
 import { CiLogout } from "react-icons/ci";
+import { useLocalStorage } from '@/utils/useLocalStorage';
+import { useEffect, useState } from 'react';
 
 interface ILayoutStore {
   children: React.ReactNode
 }
 
 export default function StoreLayout({ children }: ILayoutStore) {
-  const { dataUser, GoOut } = useAuth()
+  const { dataUser, GoOut, totalItem } = useAuth()
   const router = useRouter();
 
   const handleClick = () => {
     router.push('/auth');
   };
+
 
   return (
     <div>
@@ -35,7 +38,7 @@ export default function StoreLayout({ children }: ILayoutStore) {
             <div className='cart'>
               <BsCart2 />
               <span>Compras</span>
-              <span className='number-itens'>0</span>
+              <span className='number-itens'>{totalItem}</span>
             </div>
 
             {!dataUser && <div onClick={handleClick}>

@@ -16,6 +16,10 @@ export const WrapperButton = styled.button`
   align-items: center;
   gap: 6px;
 
+  &:disabled {
+    background-color: #ddd;
+  }
+
   &:active {
     background-color: #62A219;
   }
