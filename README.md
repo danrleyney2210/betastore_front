@@ -88,7 +88,7 @@ Veja o arquivo <a>package.json</a>
 
 <img width="120" src=".github/eu.png"/>
 
-Feito com ❤️ por Danrley Ney 👋🏽 Entre em contato!
+Feito com ❤️ por Danrley Ney 👋🏽 Entre em contato! <a>www.danrley.dev</a>
 
 
 
