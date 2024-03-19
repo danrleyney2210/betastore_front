@@ -199,7 +199,6 @@ export default function Home() {
 
         <S.WrapperPagination>
           <div className="content_pagination">
-
             <div className="page-info">
               {data && (
                 <span className="result">{data.length} Resultados</span>

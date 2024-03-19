@@ -58,6 +58,13 @@
 </h1>
 
 
+### Teste automatizado de Login com Cypresscom usando credenciais
+
+> Teste realizado para efetuar Login.
+
+<img alt="CoinSync" title="Teste" src=".github/login.gif" />
+
+
 
 ### Tecnologias Usadas
 

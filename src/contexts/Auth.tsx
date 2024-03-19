@@ -4,7 +4,7 @@ import { ILoginSchema } from '@/app/auth/types'
 import { api } from '@/service/api'
 import { useLocalStorage } from '@/utils/useLocalStorage'
 import { useRouter } from 'next/navigation'
-import { createContext, useContext, ReactNode, useState, useEffect, Children } from 'react'
+import { createContext, useContext, ReactNode, useState, useEffect, Children, Dispatch, SetStateAction } from 'react'
 import toast from 'react-hot-toast'
 
 interface IAuth {
@@ -27,7 +27,7 @@ interface IContentxtProvider {
   dataUser: TResponseLogin
   GoOut: () => void
   totalItem: number
-  settotalItem: any
+  settotalItem: Dispatch<SetStateAction<number>>;
 }
 
 export const AuthContext = createContext({} as IContentxtProvider)
@@ -46,8 +46,6 @@ export const AuthProvider = ({ children }: IAuth) => {
       password: data.key
     })
     if (result) {
-
-
       setBetaSotre(result.data.token)
       setDataUser(result.data)
 
