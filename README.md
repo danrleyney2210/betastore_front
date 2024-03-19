@@ -39,6 +39,19 @@
   <img alt="CoinSync" title="CoinSync" src=".github/home.png" />
 </h1>
 
+## Datalhes do produto
+
+<h1 align="center">
+  <img alt="CoinSync" title="CoinSync" src=".github/details.png" />
+</h1>
+
+
+## Adicionar Produto
+
+<h1 align="center">
+  <img alt="CoinSync" title="CoinSync" src=".github/modal.png" />
+</h1>
+
 
 
 ### Tecnologias Usadas
