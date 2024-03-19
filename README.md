@@ -20,7 +20,7 @@
 
 
 ## Deploy feito na Vercel
-- link: <a> https://betastore-front-ffau9oa2v-danrleyney2210.vercel.app/</a>
+- link: <a> https://betastore-front.vercel.app/</a>
 
 ## 🔖 Layout
 
