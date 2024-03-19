@@ -131,8 +131,28 @@ export const Wrapper = styled.div`
       justify-content: center;
       align-items: center;
     }
+
   }
 
-  
+  @media (max-width: 1024px) {
+    .content {
+      padding: 0 24px;
+      
+      .item {
+        flex-direction: column;
+        
+
+        .content-images {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .main-image {
+          max-width: 100% !important;
+        }
+      }
+    }
+  }
 
 `

@@ -42,9 +42,10 @@ export default function Auth() {
       <div className="content">
 
         <div className="box-left">
-          <BsFillCartCheckFill size={39} color='#fff' />
+          <BsFillCartCheckFill size={39} />
           <h1>Beta<span>Store</span></h1>
         </div>
+
 
         <div className="box-right">
           <h1>Faça seu Login</h1>

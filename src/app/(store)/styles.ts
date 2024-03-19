@@ -407,6 +407,14 @@ export const WrapperPagination = styled.div`
     }
   }
 
+  @media (max-width: 600px) {
+    .content_pagination {
+      flex-direction: column;
+      gap: 26px;
+      align-items: center;
+    }
+  }
+
 
 `
 
@@ -435,5 +443,13 @@ export const Footer = styled.div`
     span {
       font-size: 10px;
     }
+  }
+
+  @media (max-width: 1024px){
+    padding: 0 24px;
+  }
+
+  @media (max-width: 1024px){
+    padding: 0 24px;
   }
 `

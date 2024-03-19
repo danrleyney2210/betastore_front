@@ -199,7 +199,7 @@ export default function Home() {
 
         <S.WrapperPagination>
           <div className="content_pagination">
-            {/* <Pagination defaultCurrent={6} total={50} /> */}
+
             <div className="page-info">
               {data && (
                 <span className="result">{data.length} Resultados</span>

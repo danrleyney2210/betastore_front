@@ -103,6 +103,7 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
                   })
                 }
               </div>
+
               <div className="main-image" style={{ maxWidth: '500px' }}>
                 <Image
                   src={currentImage}
@@ -113,6 +114,7 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
                 // layout="responsive"
                 />
               </div>
+
               <div className="description">
                 <h1>{product.title}</h1>
                 <p>Descrição: <span>{product.description}</span></p>
