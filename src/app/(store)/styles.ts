@@ -37,6 +37,20 @@ export const Wrapper = styled.div`
       justify-content: center;
       align-items: center;
     }
+    .content-not-found {
+      height: 300px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+
+      p {
+        color: #579B0B;
+        font-weight: 700;
+      }
+    }
   }
  }
 
@@ -234,6 +248,36 @@ export const Header = styled.div`
           }  
         }
 
+      }
+
+      .cart {
+        position: relative;
+
+        &:hover {
+          .number-itens {
+            color: #fff;
+          }
+        }
+
+        .number-itens {
+          position: absolute;
+          right: -10px;
+          top: -5px;
+
+          height: 12px;
+          
+          width: 12px;
+          border-radius: 50%;
+          background-color: #62A219;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          font-size: 9px;
+
+         
+        }
       }
 
       

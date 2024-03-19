@@ -36,7 +36,7 @@ export const Wrapper = styled.div`
       padding: 16px;
 
       display: flex;
-      gap: 16px;
+      gap: 20px;
 
       .content-images {
         height: 100%;
@@ -98,6 +98,16 @@ export const Wrapper = styled.div`
         }
       }
     }
+
+    .content-load {
+      height: 400px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+
+  
 
 `

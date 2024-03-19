@@ -11,6 +11,7 @@ import { IDataProduct, IProducts } from '@/models/Products';
 import { api } from '@/service/api';
 import { redirect, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 
 
 
@@ -19,18 +20,39 @@ export default function Home() {
   const [isLoading, setIsloading] = useState(true)
 
   const [data, setData] = useState<IProducts[]>([] as IProducts[])
-  const [dataTemp, setDataTemp] = useState<IProducts[]>()
+  const [dataTemp, setDataTemp] = useState<IProducts[]>([] as IProducts[])
 
   const [currentItems, setCurrentItems] = useState<any>(null)
   const [pageCount, setPageCount] = useState<number | any>(0)
   const [itemOffset, setItemOffset] = useState(0)
   const [itemsPerPage, setItemsPerPage] = useState(5)
 
+  const [search, setSearch] = useState('')
+
   const router = useRouter()
+
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * itemsPerPage) % data.length
+    setItemOffset(newOffset)
+  }
 
   function handleClick(id: number) {
     router.push(`/product/${id}`)
   }
+
+  const filter = (search: string) => {
+    if (!search) {
+      setData(dataTemp)
+      return
+    }
+    const result = dataTemp?.filter(
+      (item) =>
+        item.title.toUpperCase().includes(search.toUpperCase()) ||
+        String(item.price).includes(search)
+    )
+    setData(result)
+  }
+
 
   const getProducts = async () => {
     setIsloading(true)
@@ -49,20 +71,26 @@ export default function Home() {
     setPageCount(Math.ceil(data?.length / itemsPerPage))
   }, [itemOffset, itemsPerPage, data])
 
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length
-    setItemOffset(newOffset)
-  }
 
   useEffect(() => {
     getProducts()
   }, [])
 
+  useEffect(() => {
+    filter(search)
+  }, [search])
+
+
   return (
     <S.Wrapper >
       <div className='container'>
         <div className="content-input-search">
-          <InputSearch type='text' placeholder='Digite para fazer sua pequisa' />
+          <InputSearch
+            type='text'
+            placeholder='Digite para fazer sua pequisa'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
           <S.WrapperFilterButton>
             <button type='button' onClick={() => setIsActiviDrop(!isActiveDrop)}>
@@ -86,7 +114,6 @@ export default function Home() {
         </div>
 
         <div className="content-body-itens">
-
           {
             currentItems &&
             currentItems.map((item: IProducts, index: number) => {
@@ -123,6 +150,13 @@ export default function Home() {
           {isLoading && <div className="content-load">
             <Load />
           </div>}
+
+          {data.length < 1 && !isLoading &&
+            <div className='content-not-found'>
+              <MdOutlineRemoveShoppingCart size={50} />
+              <p>Nenhum Item encontrado, Pesquise outro produto!</p>
+            </div>
+          }
         </div>
 
         <S.WrapperPagination>
