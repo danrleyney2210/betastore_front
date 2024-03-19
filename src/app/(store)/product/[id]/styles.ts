@@ -44,14 +44,21 @@ export const Wrapper = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(5, 1fr);
-        grid-template: 15px;
+        row-gap: 20px;
         
         .item-image {
-          
-          height: 100%;
-          width: 100%;
+          position: relative;
+          height: 80px;
+          width: 80px;
           transition: transform 0.3s ease;
           cursor: pointer;
+
+          img {
+            width: fit-content;
+            height: fit-content;
+            object-fit: cover;
+            object-position: center;
+          }
 
           &:hover {
             transform: scale(1.1);
@@ -61,10 +68,20 @@ export const Wrapper = styled.div`
       }
 
       .main-image {
-        max-width: 350px;
+        max-width: 500px;
         width: 100%;
-        height: 100%;
+        height: 500px;
+        position: relative;
+        
         border-radius: 10px;
+
+        img {
+          object-fit: contain;
+          object-position: center;
+          width: fit-content;
+          height: fit-content;
+        }
+   
       }
 
       .description {
@@ -146,6 +163,7 @@ export const Wrapper = styled.div`
           display: flex;
           align-items: center;
           gap: 20px;
+          width: 100%;
         }
 
         .main-image {

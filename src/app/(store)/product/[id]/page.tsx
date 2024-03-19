@@ -91,12 +91,10 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
                         <Image
                           key={index}
                           src={item}
-                          width={80}
-                          height={60}
+                          fill
                           quality={100}
                           alt=''
                           onClick={() => changeImage(item)}
-                        // layout="responsive"
                         />
                       </div>
                     )
@@ -104,11 +102,10 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
                 }
               </div>
 
-              <div className="main-image" style={{ maxWidth: '500px' }}>
+              <div className="main-image">
                 <Image
                   src={currentImage}
-                  width={500}
-                  height={468}
+                  fill
                   quality={100}
                   alt=''
                 // layout="responsive"
