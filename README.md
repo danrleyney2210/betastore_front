@@ -22,6 +22,11 @@
 ## Deploy feito na Vercel
 - link: <a> https://betastore-front.vercel.app/</a>
 
+### Login 
+* Para Logar no sistema use as credênciais abaixo: 
+*  user: kminchelle
+* key: 0lelplR
+
 ## 🔖 Layout
 
 - O Layout foi desenvolvido por mim, sem nenhum figma ou ponto de referência
@@ -70,10 +75,7 @@
 - react-toastify - Para Feedback e alertas personalizados.
 Veja o arquivo <a>package.json</a>
 
-### Login 
->> Para Logar no sistema use as credênciais abaixo: 
->> user: kminchelle
->> key: 0lelplR
+
 
 ### 🦸 Desenvolvedor 🤘
 
