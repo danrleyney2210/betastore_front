@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 💻 Sobre o desafio
 
-## Getting Started
+- O desafio consiste em desenvolver uma simples aplicação WEB para um curso on-line, com as seguintes funcionalidades:
 
-First, run the development server:
+* C.R.U.D de Produtos
+* Listagem (Com paginação);
+* Criação;
+* Alteração;
+* Deletar;
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Cada produto pode ter uma ou mais categorias vinculadas ao produto.
+- Busca de Produtos(No Front)
+- Buscar produtos por Title ou Brand Ordenacao de produtos por Title ou Brand
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Deve se mostrar todos os atributos que tiverem na API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- API DE REFERENCIA
+- Utilize a API de refência como https://dummyjson.com/docs/products;
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy feito na Vercel
+- link: <a> https://betastore-front-ffau9oa2v-danrleyney2210.vercel.app/</a>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔖 Layout
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- O Layout foi desenvolvido por mim, sem nenhum figma ou ponto de referêncua
 
-## Deploy on Vercel
+## Login Auth
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<h1 align="center">
+  <img alt="CoinSync" title="CoinSync" src=".github/login.png" />
+</h1>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Home Page
+
+<h1 align="center">
+  <img alt="CoinSync" title="CoinSync" src=".github/home.png" />
+</h1>
+
+
+
+### Tecnologias Usadas
+
+- Next 14
+- Typescript
+- React-Hook-Forms
+- React Icons - Biblioteca de icones.
+- Styled Components - CSS-in-js
+- Prettier - Formatador de código opinativo.
+- Cypress - Para testes automatizado e testes em library.
+- Eslint - Ferramenta para identificar e relatar os padrões encontrados no código ECMAScript /
+  JavaScript, com o objetivo de tornar o código mais consistente e evitar bugs.
+- Axios - Cliente HTTP baseado em promessa para node. jse o navegador.
+- react-lottie - Para animações utilizando o formato JSON
+- react-toastify - Para Feedback e alertas personalizados.
+Veja o arquivo <a>package.json</a>
+
+### Login 
+>> Para Logar no sistema use as credênciais abaixo: 
+>> user: kminchelle
+>> key: 0lelplR
+
+### 🦸 Desenvolvedor 🤘
+
+<img width="120" src=".github/eu.png"/>
+
+Feito com ❤️ por Danrley Ney 👋🏽 Entre em contato!
+
+
+

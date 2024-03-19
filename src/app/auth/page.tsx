@@ -59,7 +59,7 @@ export default function Auth() {
               <p className='text-error'>{errors.user?.message}</p>
               <InputRHF
                 type='password'
-                placeholder='Digite seu usuário'
+                placeholder='Digite sua senha'
                 name='key'
                 rules={{ required: 'Campo Obrigatório' }}
               />
