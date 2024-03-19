@@ -4,7 +4,6 @@ import * as S from './styles'
 import { InputSearch } from '@/components/FormComponents/inputSearch/InputSearch';
 import React, { useEffect, useState } from 'react';
 import { MdFilterList } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 import ReactPaginate from 'react-paginate';
 import { IDataProduct, IProducts } from '@/models/Products';
@@ -16,6 +15,7 @@ import { IoAdd } from "react-icons/io5";
 import { InputRHF } from '@/components/RHFComponents';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { BsCartPlus } from "react-icons/bs";
 
 interface IaddProduct {
   nameProduct: string
@@ -147,7 +147,8 @@ export default function Home() {
           </S.WrapperFilterButton>
 
           <S.ButtonAddProduct onClick={() => setShowModalProduct(true)}>
-            <IoAdd />
+            <BsCartPlus />
+            <span>Adicionar</span>
           </S.ButtonAddProduct>
         </div>
 
@@ -252,6 +253,7 @@ export default function Home() {
               type='text'
               rules={{ required: 'Campo Obrigatório' }}
             />
+
             <p className='text-error'>{errors.nameProduct?.message}</p>
 
             <Button

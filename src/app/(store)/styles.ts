@@ -183,7 +183,7 @@ export const WrapperFilterButton = styled.div`
         cursor: pointer;
 
         &:hover {
-          color: #D73035;
+          color: #62A219;
         }
       }
     }
@@ -208,8 +208,9 @@ export const ButtonAddProduct = styled.div`
     outline: none;
     cursor: pointer;
     transition: all 0.3s;
-    color: #62A219;
     border: 1px solid transparent;
+    background-color: #62A219;
+    color: #fff;
 
     &:focus {
       background-color: #444;

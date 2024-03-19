@@ -64,6 +64,10 @@
 
 <img alt="CoinSync" title="Teste" src=".github/login.gif" />
 
+> Teste realizado para efetuar cadastro de Produto.
+
+<img alt="CoinSync" title="Teste" src=".github/addProduct.gif" />
+
 
 
 ### Tecnologias Usadas
