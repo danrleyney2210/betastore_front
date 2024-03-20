@@ -132,10 +132,19 @@ export const Wrapper = styled.div`
        
 
         .price {
+          max-width: 200px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
           h1 {
             color: #579B0B;
             font-weight: 700;
             font-size: 20px;
+          }
+
+          button:nth-child(3) {
+            background-color: red;
           }
         }
       }
@@ -173,4 +182,37 @@ export const Wrapper = styled.div`
     }
   }
 
+`
+
+
+export const ModalDelete = styled.div`
+
+  h3 {
+    margin-top: 18px;
+  }
+
+  .content-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    button {
+      margin-top: 16px;
+      padding: 6px 26px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      font-size: 13px;
+      color: #fff;
+      background-color: #999;
+    }
+
+    button:nth-child(1) {
+       background-color:red;
+    }
+
+    button:nth-child(2) {
+      background-color: #579B0B;
+    }
+  }
 `

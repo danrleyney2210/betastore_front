@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Load } from '@/components'
+import { Button, Load, Modal } from '@/components'
 import * as S from './styles'
 import { useParams, useRouter } from 'next/navigation'
 import { api } from '@/service/api'
@@ -10,6 +10,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from '@/utils/useLocalStorage'
 import { useAuth } from '@/contexts/Auth'
+import toast from 'react-hot-toast'
 
 
 
@@ -26,6 +27,8 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
   const [isLoading, setIsloading] = useState(true)
   const [product, setProduct] = useState<IProducts>({} as IProducts)
   const [currentImage, setCurrentImage] = useState<string>('')
+
+  const [modalDelete, setModalDelete] = useState(false)
 
   const [price, setPrice] = useState(0)
   const [total, setTotal] = useState(0)
@@ -64,6 +67,20 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
 
   function changeImage(image: string) {
     setCurrentImage(image)
+  }
+
+  async function deleteProduct(id: number) {
+    try {
+      const result = await api.delete(`/products/${id}`)
+      if (result) {
+        toast.success('Produto Excluído com sucesso!')
+        router.push('/')
+      } else {
+        toast.error('Algo deu errado, tente novamente')
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 
@@ -128,6 +145,7 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
                 <div className="price">
                   <h1>R$ {price}</h1>
                   <Button onClick={addToCart}>Adicionar ao Carrinho</Button>
+                  <Button onClick={() => setModalDelete(true)}>Excluir produto</Button>
                 </div>
               </div>
             </div>
@@ -138,6 +156,17 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
           )
         }
       </div>
+
+      <Modal title='Excluir Produto' onClose={() => setModalDelete(false)} showModal={modalDelete}>
+
+        <S.ModalDelete>
+          <h3>Tem certeza que deseja excluir este produto ?</h3>
+          <div className="content-btn">
+            <button onClick={() => setModalDelete(false)}>Não</button>
+            <button onClick={() => deleteProduct(product.id)}>Sim</button>
+          </div>
+        </S.ModalDelete>
+      </Modal>
     </S.Wrapper>
   )
 }
