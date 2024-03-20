@@ -52,6 +52,7 @@ export default function ProductDinamicPage({ params }: ProsductsProps) {
 
   function addToCart() {
     settotalItem(quantity)
+    toast.success(`${quantity} Adicionado(s) ao carrinho!`)
 
   }
 
