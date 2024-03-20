@@ -185,6 +185,34 @@ export const WrapperFilterButton = styled.div`
         &:hover {
           color: #62A219;
         }
+
+        label {
+          padding: 8px;
+          border-radius: 4px;
+          color: #3c454d;
+          
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+
+          &:active {
+            background-color: #bec9d2 !important;
+          }
+
+          input[type='radio'] {
+            display: none;
+          }
+
+          &:has(> input:checked) {
+            color: #62A219;
+          }
+
+          &:hover {
+              color: #62A219;
+           
+          }
+        }
       }
     }
   }

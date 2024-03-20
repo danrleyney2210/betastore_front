@@ -16,6 +16,7 @@ import { InputRHF } from '@/components/RHFComponents';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { BsCartPlus } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
 
 interface IaddProduct {
   nameProduct: string
@@ -33,6 +34,8 @@ export default function Home() {
   const [pageCount, setPageCount] = useState<number | any>(0)
   const [itemOffset, setItemOffset] = useState(0)
   const [itemsPerPage, setItemsPerPage] = useState(5)
+
+  const [typeFilter, setTypeFilter] = useState('')
 
   const [search, setSearch] = useState('')
 
@@ -129,6 +132,7 @@ export default function Home() {
             <button type='button' onClick={() => setIsActiviDrop(!isActiveDrop)}>
               <MdFilterList />
               Filtrar
+              {!!typeFilter && <IoMdClose onClick={() => setTypeFilter('')} style={{ cursor: 'pointer' }} />}
             </button>
 
 
@@ -136,9 +140,58 @@ export default function Home() {
               <React.Fragment>
                 <div className="dropdown-filter">
                   <ul>
-                    <li>Categoria</li>
-                    <li>Nome</li>
-                    <li>Preco</li>
+                    <li>
+                      <label htmlFor="Todos">
+                        Todos
+                        <input
+                          type="radio"
+                          id='Todos'
+                          name='typeFilter'
+                          value={'Todos'}
+                          checked={typeFilter === 'Todos'}
+                          onChange={(e) => setTypeFilter('Todos')}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="Nome">
+                        Nome
+                        <input
+                          type="radio"
+                          id='Nome'
+                          name='typeFilter'
+                          value={'Nome'}
+                          checked={typeFilter === 'Nome'}
+                          onChange={(e) => setTypeFilter('Nome')}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="Preço">
+                        Preço
+                        <input
+                          type="radio"
+                          id='Preço'
+                          name='typeFilter'
+                          value={'Preço'}
+                          checked={typeFilter === 'Preço'}
+                          onChange={(e) => setTypeFilter('Preço')}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="Categoria">
+                        Categoria
+                        <input
+                          type="radio"
+                          id='Categoria'
+                          name='typeFilter'
+                          value={'Categoria'}
+                          checked={typeFilter === 'Categoria'}
+                          onChange={(e) => setTypeFilter('Categoria')}
+                        />
+                      </label>
+                    </li>
                   </ul>
                 </div>
                 <div id="overlay-dropown-filter" onClick={() => setIsActiviDrop(!isActiveDrop)}></div>
