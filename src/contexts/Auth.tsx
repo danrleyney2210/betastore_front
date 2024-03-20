@@ -40,20 +40,21 @@ export const AuthProvider = ({ children }: IAuth) => {
   const router = useRouter()
 
   const AuthLogin = async (data: ILoginSchema) => {
+    try {
+      const result = await api.post<TResponseLogin>('/auth/login', {
+        username: data.user,
+        password: data.key
+      })
 
-    const result = await api.post<TResponseLogin>('/auth/login', {
-      username: data.user,
-      password: data.key
-    })
-    if (result) {
-      setBetaSotre(result.data.token)
-      setDataUser(result.data)
-
-      toast.success('Login efetuado com Sucesso!')
-      //redirect to home
-      router.push('/')
-    } else {
-      toast.error('Usuário ou Senha incorretos!')
+      if (result.data) {
+        console.log('Entrou aqui')
+        setBetaSotre(result.data.token)
+        setDataUser(result.data)
+        toast.success('Login efetuado com Sucesso!')
+        router.push('/')
+      }
+    } catch (error) {
+      toast.error('Credenciais inválidas, tente novamente!')
     }
   };
 
